@@ -1371,3 +1371,47 @@ body {
 @media (max-width: 600px) { .family-grid { grid-template-columns: 1fr; } }
 .family-phones i { font-style: normal; color: var(--gold); }
 .family-phones .family-name:last-child { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 0; }
+
+/* ===== Dwar (temple doors) intro ===== */
+.dwar-screen { --door-ms: 1.7s; position: relative; min-height: 100svh; overflow: hidden; display: grid; place-items: center; background: #120b0c; perspective: 1400px; }
+.dwar-language { color: #e3c58b; }
+.dwar-language button { color: #bfa57a; }
+.dwar-language button.active { color: #f6e6c9; }
+.dwar-light { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 55%, #ffe9b8 0%, #e3b25f 22%, #6b3a2a 55%, #120b0c 85%); opacity: .35; transition: opacity var(--door-ms) ease; }
+.is-opening .dwar-light { opacity: 1; }
+
+.dwar-frame { position: relative; width: min(94vw, 760px); height: min(88svh, 900px); border: 3px solid #b98e4a; border-radius: 180px 180px 6px 6px / 140px 140px 6px 6px; box-shadow: 0 0 0 6px #3a0f17, 0 0 0 8px #b98e4a88, 0 30px 80px #000a; overflow: hidden; background: #ffe9b8; }
+.dwar-doors { position: absolute; inset: 0; display: flex; transform-style: preserve-3d; }
+.dwar-door { position: relative; width: 50%; height: 100%; background: linear-gradient(100deg, #6a1f2c, #4a1320 60%, #3a0f17); transition: transform var(--door-ms) cubic-bezier(.65, 0, .25, 1); backface-visibility: hidden; }
+.dwar-door.left { transform-origin: left center; border-right: 2px solid #b98e4a; }
+.dwar-door.right { transform-origin: right center; border-left: 2px solid #b98e4a; }
+.dwar-door::before { content: ""; position: absolute; inset: 10px; border: 2px solid #b98e4a99; background:
+  radial-gradient(circle, #d7b06a 0 2.5px, transparent 3px) 0 0 / 28px 28px; -webkit-mask: linear-gradient(#000 0 0) top / 100% 14px no-repeat, linear-gradient(#000 0 0) bottom / 100% 14px no-repeat; mask: linear-gradient(#000 0 0) top / 100% 14px no-repeat, linear-gradient(#000 0 0) bottom / 100% 14px no-repeat; }
+.dwar-door .arch { position: absolute; left: 16%; right: 16%; top: 9%; height: 36%; border: 2px solid #b98e4acc; border-radius: 999px 999px 8px 8px; background: linear-gradient(180deg, #ffffff10, transparent); box-shadow: inset 0 0 0 5px #4a1320, inset 0 0 0 6px #b98e4a66; }
+.dwar-door .arch.lower { top: 50%; height: 38%; border-radius: 8px 8px 999px 999px; }
+.dwar-door .ring { position: absolute; top: 50%; width: 26px; height: 26px; margin-top: -13px; border: 3px solid #d7b06a; border-radius: 50%; box-shadow: 0 2px 6px #0008; }
+.dwar-door.left .ring { right: 14px; }
+.dwar-door.right .ring { left: 14px; }
+.is-opening .dwar-door.left { transform: rotateY(-102deg); }
+.is-opening .dwar-door.right { transform: rotateY(102deg); }
+
+.dwar-toran { position: absolute; z-index: 3; top: 0; left: 0; right: 0; display: flex; justify-content: space-around; padding-top: 7%; pointer-events: none; }
+.dwar-toran::before { content: ""; position: absolute; left: 6%; right: 6%; top: calc(7% - 4px); height: 3px; background: #d7b06a; border-radius: 3px; }
+.dwar-toran span { width: clamp(14px, 3.4vw, 24px); height: clamp(34px, 7vw, 52px); border-radius: 50% 50% 55% 55% / 30% 30% 70% 70%; transform-origin: top center; animation: toran-sway 3.2s ease-in-out var(--d) infinite alternate; box-shadow: inset 0 -6px 8px #0003; }
+.dwar-toran span.marigold { background: radial-gradient(circle at 50% 30%, #ffc247, #e8861c); }
+.dwar-toran span.gold { background: radial-gradient(circle at 50% 30%, #f3dc9c, #b98e4a); }
+@keyframes toran-sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+
+.dwar-plaque { position: absolute; z-index: 4; left: 50%; top: 50%; width: min(78vw, 330px); transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 26px 18px 22px; text-align: center; color: #f6e6c9; background: radial-gradient(ellipse at center, #2a0d14f2, #1b090ff0); border: 2px solid #b98e4a; border-radius: 120px 120px 14px 14px; box-shadow: 0 0 0 5px #1b090f, 0 0 0 6px #b98e4a88, 0 18px 50px #000a; transition: opacity .6s ease, transform .6s ease; }
+.is-opening .dwar-plaque { opacity: 0; transform: translate(-50%, -50%) scale(.92); pointer-events: none; }
+.dwar-ganesha { width: 74px; aspect-ratio: 1; background: #d4b77e; -webkit-mask: var(--ganesha) center / contain no-repeat; mask: var(--ganesha) center / contain no-repeat; }
+.dwar-invocation { color: #e3c58b; font: 500 13px 'Noto Serif Devanagari', serif; letter-spacing: 1px; }
+.dwar-caption { margin-top: 6px; color: #d4b77e; font: 9px Inter, sans-serif; letter-spacing: 3px; }
+.dwar-screen[lang="hi"] .dwar-caption, .dwar-screen[lang="hi"] .dwar-tap { font-family: 'Noto Serif Devanagari', serif; letter-spacing: 0; font-size: 12px; }
+.dwar-names { display: flex; flex-direction: column; align-items: center; font: 400 clamp(34px, 9vw, 44px)/1.2 var(--script); color: #f6e6c9; padding: .05em 0 .1em; }
+.dwar-names i { font-style: normal; font-size: .55em; color: #d2ae6d; }
+.dwar-date { color: #e8c98b; font: 500 15px 'Cormorant Garamond', serif; letter-spacing: 1px; }
+.dwar-screen[lang="hi"] .dwar-date { font-family: 'Noto Serif Devanagari', serif; font-size: 13px; }
+.dwar-tap { margin-top: 10px; padding: 11px 22px; border: 1px solid #e8c98b88; border-radius: 40px; background: #0003; color: #f6e6c9; font: 10px Inter, sans-serif; letter-spacing: 3px; }
+.dwar-tap:hover { background: #b98e4a33; }
+@media (max-width: 600px) { .dwar-frame { width: 100vw; height: 100svh; border-radius: 0; border-width: 0; box-shadow: none; } }

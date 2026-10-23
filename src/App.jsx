@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import EnvelopeIntro from './components/EnvelopeIntro'
+import DwarIntro from './components/DwarIntro'
 import WeddingHero from './components/WeddingHero'
 import { BlessedSection, CountdownSection, EventsSection, FamilySection, Footer, MusicButton, VenueSection, WelcomeSection } from './components/InvitationSections'
 import { weddingData } from './data/weddingData'
@@ -41,7 +41,7 @@ export default function App() {
       <audio ref={audioRef} src={weddingData.assets.music} loop preload="none" onEnded={() => setPlaying(false)} />
       <AnimatePresence mode="wait">
         {!opened ? (
-          <EnvelopeIntro key="envelope" onOpen={openInvitation} language={language} setLanguage={setLanguage} />
+          <DwarIntro key="dwar" onOpen={openInvitation} language={language} setLanguage={setLanguage} />
         ) : (
           <motion.main id="invitation" key="invitation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
             <div className="language-switch page-language">
