@@ -48,13 +48,13 @@ export default function App() {
               <button className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button><span>·</span>
               <button className={language === 'hi' ? 'active' : ''} onClick={() => setLanguage('hi')}>हिंदी</button>
             </div>
-            <WeddingHero copy={copy} />
+            <WeddingHero copy={copy} language={language} />
             <WelcomeSection copy={copy} />
             <BlessedSection copy={copy} />
             <CountdownSection copy={copy} />
             <EventsSection copy={copy} />
             <VenueSection copy={copy} />
-            <FamilySection />
+            <FamilySection copy={copy} />
             <Footer copy={copy} />
             <MusicButton playing={playing} onToggle={toggleMusic} />
           </motion.main>

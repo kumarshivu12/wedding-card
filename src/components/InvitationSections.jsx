@@ -8,10 +8,10 @@ import { useCountdown } from '../hooks/useCountdown'
 export function WelcomeSection({ copy }) {
   return <section className="paper-section welcome-section" id="welcome">
     <div className="ornate-frame">
-      <span className="arabic dark-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+      <div className="shlok">{copy.shlok.map(line => <span key={line}>{line}</span>)}</div>
       <SectionHeading eyebrow="AN INVITATION FROM OUR FAMILIES">{copy.welcome}</SectionHeading>
       <p className="invitation-copy">{copy.welcomeText}</p>
-      <div className="signature">{weddingData.couple.groom} &amp; {weddingData.couple.bride}</div>
+      <div className="signature">Neeru &amp; Manikant</div>
     </div>
   </section>
 }
@@ -22,16 +22,16 @@ export function BlessedSection({ copy }) {
     <SectionHeading eyebrow="A MOMENT TO REMEMBER">{copy.blessed}</SectionHeading>
     <motion.button className={`heart-reveal ${revealed ? 'revealed' : ''}`} onClick={() => setRevealed(v => !v)} whileTap={{ scale: 0.94 }} aria-label="Reveal wedding date">
       <Heart size={35} strokeWidth={1.2} fill={revealed ? 'currentColor' : 'none'} />
-      <span>{revealed ? weddingData.couple.displayDate : 'S & S'}</span>
+      <span>{revealed ? weddingData.couple.displayDate : 'N & M'}</span>
     </motion.button>
-    <p className="muted">{revealed ? 'A date to cherish forever' : copy.reveal}</p>
+    <p className="muted">{revealed ? copy.cherish : copy.reveal}</p>
   </section>
 }
 
 export function CountdownSection({ copy }) {
   const time = useCountdown(weddingData.couple.weddingDate)
-  const values = [['DAYS', time.days], ['HOURS', time.hours], ['MINUTES', time.minutes], ['SECONDS', time.seconds]]
-  return <section className="countdown-section">
+  const values = [time.days, time.hours, time.minutes, time.seconds].map((v, i) => [copy.units[i], v])
+  return <section className="countdown-section" lang={copy.lang}>
     <SectionHeading eyebrow="THE BIG DAY">{copy.countdown}</SectionHeading>
     <div className="countdown-grid">
       {values.map(([label, value]) => <div className="countdown-unit" key={label}><strong>{String(value).padStart(2, '0')}</strong><span>{label}</span></div>)}
@@ -43,16 +43,19 @@ export function CountdownSection({ copy }) {
 export function EventsSection({ copy }) {
   return <section className="events-section paper-section">
     <SectionHeading eyebrow="SAVE THE DATES">{copy.schedule}</SectionHeading>
-    <div className="timeline">
-      {weddingData.events.map((event, index) => <motion.article className="event" key={`${event.title}-${index}`} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}>
-        <div className="event-marker"><span>{String(index + 1).padStart(2, '0')}</span></div>
-        <div className="event-content">
-          <span className="event-date">{event.date} · {event.day}</span>
-          <h3>{event.title}</h3>
-          <span className="event-time">{event.time}</span>
-          <p>{event.note}</p>
-        </div>
-      </motion.article>)}
+    <div className="timeline" lang={copy.lang}>
+      {weddingData.events.map((event, index) => {
+        const e = event[copy.lang] || event.en
+        return <motion.article className="event" key={event.en.title} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}>
+          <div className="event-marker"><span>{String(index + 1).padStart(2, '0')}</span></div>
+          <div className="event-content">
+            <span className="event-date">{e.date} · {e.day}</span>
+            <h3>{e.title}</h3>
+            <span className="event-time">{e.time}</span>
+            <p>{e.note}</p>
+          </div>
+        </motion.article>
+      })}
     </div>
   </section>
 }
@@ -69,17 +72,24 @@ export function VenueSection({ copy }) {
   </section>
 }
 
-export function FamilySection() {
-  return <section className="family-section paper-section">
-    <SectionHeading eyebrow="WITH LOVE AND BLESSINGS">Our Family</SectionHeading>
+export function FamilySection({ copy }) {
+  const f = weddingData.family[copy.lang] || weddingData.family.en
+  return <section className="family-section paper-section" lang={copy.lang}>
+    <SectionHeading eyebrow={f.eyebrow}>{f.heading}</SectionHeading>
     <div className="family-grid">
-      {weddingData.acknowledgements.map(item => <article className={`family-card ${item.inline ? 'inline' : 'stack'}`} key={item.title}>
-        <h3>{item.title}</h3>
+      {f.cards.map(card => <article className={`family-card stack${card.wide ? ' wide' : ''}`} key={card.title}>
+        <h3>{card.title}</h3>
         <div className="family-divider" aria-hidden="true"><span>❦</span></div>
-        <p>{item.names.map((n, i) => <span className="family-name" key={i}>{n}</span>)}</p>
+        {card.quote && <p className="family-quote">{card.quote}</p>}
+        <p>{card.lines.map(line => <span className="family-name" key={line}>{line}</span>)}</p>
+        {card.phones && <p className="family-phones">
+          <span className="family-name">{card.phonesLabel}</span>
+          <span className="family-name">{card.phones.map((num, i) => <span key={num}>{i > 0 && <i aria-hidden="true"> · </i>}<a href={`tel:+91${num.replace(/\s/g, '')}`}>{num}</a></span>)}</span>
+        </p>}
         <span className="family-rose" aria-hidden="true">❀</span>
       </article>)}
     </div>
+    <p className="family-note">{f.note}</p>
   </section>
 }
 
