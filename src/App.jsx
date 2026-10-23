@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import DwarIntro from './components/DwarIntro'
+import EnvelopeIntro from './components/EnvelopeIntro'
 import WeddingHero from './components/WeddingHero'
 import { BlessedSection, CountdownSection, EventsSection, FamilySection, Footer, MusicButton, VenueSection, WelcomeSection } from './components/InvitationSections'
 import { weddingData } from './data/weddingData'
@@ -11,6 +11,14 @@ export default function App() {
   const [playing, setPlaying] = useState(false)
   const audioRef = useRef(null)
   const copy = weddingData.copy[language]
+
+  // Keep the page dark behind the intro and while it crossfades out, so the cream body never flashes through.
+  useEffect(() => {
+    document.body.style.background = '#120b0c'
+    if (!opened) return undefined
+    const id = window.setTimeout(() => { document.body.style.background = '' }, 2200)
+    return () => window.clearTimeout(id)
+  }, [opened])
 
   const toggleMusic = async () => {
     const audio = audioRef.current
@@ -39,11 +47,11 @@ export default function App() {
   return (
     <>
       <audio ref={audioRef} src={weddingData.assets.music} loop preload="none" onEnded={() => setPlaying(false)} />
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {!opened ? (
-          <DwarIntro key="dwar" onOpen={openInvitation} language={language} setLanguage={setLanguage} />
+          <EnvelopeIntro key="envelope" onOpen={openInvitation} language={language} setLanguage={setLanguage} />
         ) : (
-          <motion.main id="invitation" key="invitation" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+          <motion.main id="invitation" key="invitation" initial={false}>
             <div className="language-switch page-language">
               <button className={language === 'en' ? 'active' : ''} onClick={() => setLanguage('en')}>EN</button><span>·</span>
               <button className={language === 'hi' ? 'active' : ''} onClick={() => setLanguage('hi')}>हिंदी</button>
