@@ -1,10 +1,20 @@
 import { motion } from 'framer-motion'
 import { weddingData } from '../data/weddingData'
 
-const petals = Array.from({ length: 28 }, (_, i) => ({
-  id: i, left: `${(i * 37) % 100}%`, delay: `${(i % 9) * -1.7}s`,
-  duration: `${9 + (i % 8)}s`, size: `${9 + (i % 5) * 3}px`,
-}))
+const petals = Array.from({ length: 24 }, (_, i) => {
+  const depth = (i % 4) / 3 // 0 = far, 1 = near
+  return {
+    id: i,
+    left: `${(i * 41 + 7) % 100}%`,
+    delay: `${-((i * 1.9) % 16)}s`,
+    duration: `${14 - depth * 4 + (i % 3)}s`,
+    size: `${14 + depth * 22 + (i % 3) * 3}px`,
+    drift: `${(i % 2 ? 1 : -1) * (40 + (i % 5) * 25)}px`,
+    sway: `${3 + (i % 4)}s`,
+    opacity: 0.55 + depth * 0.4,
+    blur: depth < 0.3 ? '1.5px' : '0px',
+  }
+})
 
 export default function WeddingHero({ copy, language }) {
   const h = weddingData.hero
@@ -13,7 +23,11 @@ export default function WeddingHero({ copy, language }) {
     <section className={`hero hero-${language}`} style={{ '--hero-image': `url("${weddingData.assets.hero}")` }}>
       <div className="hero-shade" />
       <div className="petals" aria-hidden="true">
-        {petals.map(p => <span key={p.id} style={{ left: p.left, animationDelay: p.delay, animationDuration: p.duration, width: p.size, height: p.size }} />)}
+        {petals.map(p => (
+          <span key={p.id} style={{ left: p.left, width: p.size, height: p.size, animationDelay: p.delay, animationDuration: p.duration, '--drift': p.drift, '--peak': p.opacity, filter: `blur(${p.blur}) drop-shadow(0 3px 3px #0003)` }}>
+            <i style={{ animationDuration: p.sway, animationDelay: p.delay }} />
+          </span>
+        ))}
       </div>
       <motion.div className="hero-content" initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.2 }}>
         <div className="hero-ganesha" role="img" aria-label="Lord Ganesha" style={{ '--ganesha': `url("${h.ganesha}")` }} />
