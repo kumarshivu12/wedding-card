@@ -9,7 +9,7 @@ export function WelcomeSection({ copy }) {
   return <section className="paper-section welcome-section" id="welcome">
     <div className="ornate-frame">
       <div className="shlok">{copy.shlok.map(line => <span key={line}>{line}</span>)}</div>
-      <SectionHeading eyebrow="AN INVITATION FROM OUR FAMILIES">{copy.welcome}</SectionHeading>
+      <SectionHeading eyebrow={copy.eyebrows.invitation}>{copy.welcome}</SectionHeading>
       <p className="invitation-copy">{copy.welcomeText}</p>
       <div className="signature">Neeru &amp; Manikant</div>
     </div>
@@ -19,7 +19,7 @@ export function WelcomeSection({ copy }) {
 export function BlessedSection({ copy }) {
   const [revealed, setRevealed] = useState(false)
   return <section className="blessed-section paper-section">
-    <SectionHeading eyebrow="A MOMENT TO REMEMBER">{copy.blessed}</SectionHeading>
+    <SectionHeading eyebrow={copy.eyebrows.moment}>{copy.blessed}</SectionHeading>
     <motion.button className={`heart-reveal ${revealed ? 'revealed' : ''}`} onClick={() => setRevealed(v => !v)} whileTap={{ scale: 0.94 }} aria-label="Reveal wedding date">
       <Heart size={35} strokeWidth={1.2} fill={revealed ? 'currentColor' : 'none'} />
       <span>{revealed ? weddingData.couple.displayDate : 'N & M'}</span>
@@ -32,7 +32,7 @@ export function CountdownSection({ copy }) {
   const time = useCountdown(weddingData.couple.weddingDate)
   const values = [time.days, time.hours, time.minutes, time.seconds].map((v, i) => [copy.units[i], v])
   return <section className="countdown-section" lang={copy.lang}>
-    <SectionHeading eyebrow="THE BIG DAY">{copy.countdown}</SectionHeading>
+    <SectionHeading eyebrow={copy.eyebrows.bigDay}>{copy.countdown}</SectionHeading>
     <div className="countdown-grid">
       {values.map(([label, value]) => <div className="countdown-unit" key={label}><strong>{String(value).padStart(2, '0')}</strong><span>{label}</span></div>)}
     </div>
@@ -42,7 +42,7 @@ export function CountdownSection({ copy }) {
 
 export function EventsSection({ copy }) {
   return <section className="events-section paper-section">
-    <SectionHeading eyebrow="SAVE THE DATES">{copy.schedule}</SectionHeading>
+    <SectionHeading eyebrow={copy.eyebrows.saveDates}>{copy.schedule}</SectionHeading>
     <div className="timeline" lang={copy.lang}>
       {weddingData.events.map((event, index) => {
         const e = event[copy.lang] || event.en
@@ -64,9 +64,9 @@ export function VenueSection({ copy }) {
   return <section className="venue-section">
     <div className="venue-card">
       <MapPin size={25} strokeWidth={1.3} />
-      <SectionHeading eyebrow="WE LOOK FORWARD TO WELCOMING YOU">{copy.venue}</SectionHeading>
-      <h3>{weddingData.venue.name}</h3>
-      <p>{weddingData.venue.address}</p>
+      <SectionHeading eyebrow={copy.eyebrows.welcoming}>{copy.venue}</SectionHeading>
+      <h3>{copy.venueName}</h3>
+      <p>{copy.venueAddress}</p>
       <a className="map-button" href={weddingData.venue.mapsUrl} target="_blank" rel="noreferrer">{copy.map}</a>
     </div>
   </section>

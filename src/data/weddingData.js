@@ -43,7 +43,7 @@ export const weddingData = {
   },
   venue: {
     name: "Rambass",
-    address: "Kanina, Haryana, India",
+    address: "Mahenndragarh, Haryana, India",
     mapsUrl: "https://maps.app.goo.gl/f7dT2iXfPY6yLPdf7?g_st=ac",
   },
   assets: {
@@ -52,7 +52,7 @@ export const weddingData = {
     seal: "/assets/wax-seal.webp",
     hero: "/assets/hero-background.webp",
     portrait: "/assets/couple-portrait.webp",
-    petal: "/assets/flower-petal.svg",
+    petal: "/assets/flower-petal.png",
     music: "/assets/wedding-music.mp3",
   },
   events: [
@@ -161,13 +161,13 @@ export const weddingData = {
       cards: [
         {
           title: "Welcome Hosts",
-          lines: ["Manjeet Yadav (HR)", "Rajneesh Yadav (Eng.)"],
+          lines: ["Manjeet Yadav (HR)", "Rajnish Yadav (Eng.)"],
         },
         {
           title: "Special Request from the Children",
           quote:
             "“Please do come and bless our Bua on her special wedding day!”",
-          lines: ["Priyasi & Anvi"],
+          lines: ["Prisha & Anvi"],
         },
         {
           wide: true,
@@ -189,13 +189,12 @@ export const weddingData = {
       cards: [
         {
           title: "स्वागतकर्ता",
-          lines: ["Manjeet Yadav (HR)", "Rajneesh Yadav (Eng.)"],
+          lines: ["मंजीत यादव (HR.)", "रजनीश यादव (Eng.)"],
         },
         {
           title: "बच्चों की ओर से विशेष निवेदन",
-          quote:
-            "“कृपया पधारकर हमारी बुआ को उनके विवाह के शुभ दिन पर आशीर्वाद दें!”",
-          lines: ["Priyasi & Anvi"],
+          quote: "“हमाली बुआ की शादी में जलूल जलूल आना जी”",
+          lines: ["प्रिशा, अन्वी "],
         },
         {
           wide: true,
@@ -213,6 +212,15 @@ export const weddingData = {
   },
   copy: {
     en: {
+      eyebrows: {
+        invitation: "AN INVITATION FROM OUR FAMILIES",
+        moment: "A MOMENT TO REMEMBER",
+        bigDay: "THE BIG DAY",
+        saveDates: "SAVE THE DATES",
+        welcoming: "WE LOOK FORWARD TO WELCOMING YOU",
+      },
+      venueName: "Rambass",
+      venueAddress: "Mahendragarh, Haryana, India",
       tap: "TAP TO OPEN",
       scroll: "SCROLL TO EXPLORE",
       welcome: "Two Souls, One Destiny",
@@ -235,26 +243,35 @@ export const weddingData = {
       footer: "With love, Neeru & Manikant",
     },
     hi: {
+      eyebrows: {
+        invitation: "स्नेहिल आमंत्रण",
+        moment: "एक अविस्मरणीय पल",
+        bigDay: "शुभ विवाह का दिन",
+        saveDates: "शुभ अवसर",
+        welcoming: "आपके शुभागमन की प्रतीक्षा रहेगी",
+      },
+      venueName: "रामबास",
+      venueAddress: "महेंद्रगढ़, हरियाणा, भारत",
       tap: "खोलने के लिए स्पर्श करें",
       scroll: "आगे देखने के लिए स्क्रॉल करें",
-      welcome: "दो रूहें, एक मुक़द्दर",
+      welcome: "दो हृदय, सात जन्मों का बंधन",
       shlok: [
         "मङ्गलं भगवान विष्णुः, मङ्गलं गरुड़ध्वजः।",
         "मङ्गलं पुण्डरीकाक्षः, मंगलाय तनो हरिः ॥",
       ],
-      welcomeText:
-        "परवरदिगार के करम और परिवारों के प्यार के साथ, हमारी ज़िंदगी के इस खूबसूरत नए सफ़र में शामिल होने के लिए आपका स्वागत है।",
-      blessed: "मुबारक़ अवसर",
+      welcomeText: `ईश्वर की असीम कृपा, बड़ों के आशीर्वाद और अपनों के प्रेम के साथ, हम जीवन के इस पावन बंधन में बंधने जा रहे हैं।
+इस शुभ मिलन और नए जीवन प्रवास के साक्षी बनने हेतु आपका हार्दिक स्वागत एवं सादर आमंत्रण है।`,
+      blessed: "शुभ अवसर",
       lang: "hi",
       units: ["दिन", "घंटे", "मिनट", "सेकंड"],
       cherish: "एक तारीख़ जो हमेशा यादगार रहेगी",
       reveal: "खास तारीख़ देखने के लिए दिल को छुएँ",
-      countdown: "जश्न शुरू होने में बाकी वक़्त",
+      countdown: "शुभ विवाह में बाकी समय",
       schedule: "कार्यक्रम की सूची",
-      venue: "जश्न का स्थान",
+      venue: "शुभ मिलन का स्थल",
       map: "मैप में देखें",
       closing: "आपकी मौजूदगी ही हमारा सबसे बड़ा तोहफ़ा है।",
-      footer: "प्यार सहित, Neeru & Manikant",
+      footer: "With love, Neeru & Manikant",
     },
   },
 };
