@@ -178,7 +178,7 @@ export const weddingData = {
             "Son of Shri Hazarilal, Village Rambass",
           ],
           phonesLabel: "Mobile:",
-          phones: ["93153 63464", "94169 17857", "94669 91464"],
+          phones: ["9315363464", "9416917857", "9466991464"],
         },
       ],
     },
@@ -205,7 +205,7 @@ export const weddingData = {
             "सुपुत्र श्री हज़ारीलाल, ग्राम रामबास",
           ],
           phonesLabel: "मोबाइल:",
-          phones: ["93153 63464", "94169 17857", "94669 91464"],
+          phones: ["9315363464", "9416917857", "9466991464"],
         },
       ],
     },
@@ -244,7 +244,7 @@ export const weddingData = {
     },
     hi: {
       eyebrows: {
-        invitation: "स्नेहिल आमंत्रण",
+        invitation: "स्नेहपूर्ण आमंत्रण",
         moment: "एक अविस्मरणीय पल",
         bigDay: "शुभ विवाह का दिन",
         saveDates: "शुभ अवसर",
@@ -270,7 +270,8 @@ export const weddingData = {
       schedule: "कार्यक्रम की सूची",
       venue: "शुभ मिलन का स्थल",
       map: "मैप में देखें",
-      closing: "आपकी मौजूदगी ही हमारा सबसे बड़ा तोहफ़ा है।",
+      closing:
+        "आपकी शुभ उपस्थिति ही हमारे लिए सबसे बड़ा आशीर्वाद एवं उपहार है।",
       footer: "With love, Neeru & Manikant",
     },
   },
