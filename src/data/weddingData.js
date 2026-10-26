@@ -161,7 +161,7 @@ export const weddingData = {
       cards: [
         {
           title: "Welcome Hosts",
-          lines: ["Manjeet Yadav (HR)", "Rajnish Yadav (Eng.)"],
+          lines: ["Manjeet Yadav", "Rajnish Yadav"],
         },
         {
           title: "Special Request from the Children",
@@ -185,11 +185,11 @@ export const weddingData = {
     hi: {
       eyebrow: "प्रेम एवं आशीर्वाद सहित",
       heading: "समस्त बछवालिया परिवार एवं मित्रगण",
-      note: "नोट: महिलाओं को भी इसी कार्ड के माध्यम से आमंत्रित किया जाता है।",
+      note: "नोट: महिलाओं का भी निमंत्रण इसी पत्र के माध्यम से स्वीकार करें।",
       cards: [
         {
           title: "स्वागतकर्ता",
-          lines: ["मंजीत यादव (HR.)", "रजनीश यादव (Eng.)"],
+          lines: ["मंजीत यादव ", "रजनीश यादव "],
         },
         {
           title: "बच्चों की ओर से विशेष निवेदन",
